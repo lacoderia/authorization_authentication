@@ -1,4 +1,14 @@
 Rails.application.configure do
+
+  ENV['FACEBOOK_APP_KEY'] = ""
+  ENV['FACEBOOK_APP_SECRET'] = ""
+
+  ENV['ADDRESS'] = ""
+  ENV['HOST'] = ""
+  ENV['DOMAIN_NAME'] = ""
+  ENV['MAIL_USERNAME'] = "" 
+  ENV['MAIL_PASSWORD'] = "" 
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -20,14 +30,14 @@ Rails.application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_assets = true 
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # Generate digests for assets URLs.
   config.assets.digest = true
@@ -79,4 +89,20 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+   config.action_mailer.smtp_settings = {
+    address: ENV["ADDRESS"],
+    port: 587,
+    domain: ENV["DOMAIN_NAME"],
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["MAIL_USERNAME"],
+    password: ENV["MAIL_PASSWORD"]
+  }
+  # ActionMailer Config
+  config.action_mailer.default_url_options = { :host => ENV["HOST"] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+
 end

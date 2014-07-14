@@ -26,4 +26,4 @@
 /.idea
 
 .DS_Store
-/config/environments/development.rb
+# /config/environments/development.rb
